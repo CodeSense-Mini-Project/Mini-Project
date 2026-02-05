@@ -1,167 +1,366 @@
 # CodeSense - AI-Powered Code Analysis Platform
 
-A full-stack web application that provides multi-language code submission, static analysis, AI-driven feedback, and comprehensive code quality evaluation using Google's Gemini API.
+<div align="center">
+
+![CodeSense Logo](https://via.placeholder.com/400x100/4F46E5/FFFFFF?text=CodeSense)
+
+**An intelligent code analysis platform powered by Google Gemini AI**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/)
+
+</div>
+
+---
+
+## 📸 Screenshots
+
+<div align="center">
+
+### Login Page
+![Login Page](./images/login.png)
+*Secure authentication interface for accessing CodeSense*
+
+### Dashboard  
+![Dashboard](./images/dashboard.png)
+*Comprehensive dashboard showing code analysis statistics and quick actions*
+
+</div>
+
+> **Note:** To display screenshots, add your `login.png` and `dashboard.png` images to the `images/` folder in the repository root.
+
+---
 
 ## 🚀 Features
 
 ### Core Functionality
-- **Multi-Language Support**: Python, C, C++, Java, and JavaScript
-- **Static Code Analysis**: Automated detection of syntax errors, warnings, and code quality issues
-- **AI-Powered Feedback**: Contextual insights using Google Gemini API for:
+- **🔍 Multi-Language Support**: Python, C, C++, Java, and JavaScript
+- **⚡ Static Code Analysis**: Automated detection of syntax errors, warnings, and code quality issues
+- **🤖 AI-Powered Feedback**: Contextual insights using Google Gemini API for:
   - Performance optimizations
   - Code readability improvements
   - Best practice recommendations
   - Complexity analysis
-- **Code Execution**: Run code safely using Piston API
-- **User Dashboard**: Track progress, view statistics, and monitor improvement over time
-- **Submission History**: Access and review all previous code analyses
+- **▶️ Code Execution**: Run code safely using Piston API
+- **📊 User Dashboard**: Track progress, view statistics, and monitor improvement over time
+- **📜 Submission History**: Access and review all previous code analyses
 
 ### Technical Highlights
 - **Frontend**: React + TypeScript with Monaco Editor for code editing
 - **Backend**: Node.js + Express with TypeScript
 - **Database**: MongoDB for user data and submission history
-- **Authentication**: JWT-based secure authentication
+- **Authentication**: JWT-based secure authentication with Firebase integration
 - **Real-time Analysis**: Parallel processing of static analysis and AI evaluation
+
+---
 
 ## 📋 Prerequisites
 
-- Node.js (v18 or higher)
-- MongoDB (local or cloud instance)
-- Google Gemini API key
-- npm or yarn
+Before you begin, ensure you have the following installed:
 
-## 🛠️ Installation
+- **Node.js** (v18 or higher) - [Download](https://nodejs.org/)
+- **MongoDB** (local or cloud instance) - [Download](https://www.mongodb.com/try/download/community)
+- **Google Gemini API key** - [Get API Key](https://makersuite.google.com/app/apikey)
+- **npm** or **yarn** package manager
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd codesense
-   ```
+---
 
-2. **Install dependencies**
-   ```bash
-   npm run install-all
-   ```
+## 🛠️ Installation & Setup
 
-3. **Configure environment variables**
+### 1. Clone the Repository
 
-   Create `server/.env` file:
-   ```env
-   PORT=5000
-   NODE_ENV=development
-   MONGODB_URI=mongodb://localhost:27017/codesense
-   JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
-   GEMINI_API_KEY=your-gemini-api-key-here
-   PISTON_API_URL=https://emkc.org/api/v2/piston
-   CORS_ORIGIN=http://localhost:5173
-   ```
+```bash
+git clone https://github.com/CodeSense-Mini-Project/Mini-Project.git
+cd Mini-Project
+```
 
-4. **Start MongoDB**
-   ```bash
-   # If using local MongoDB
-   mongod
-   ```
+### 2. Install Dependencies
 
-5. **Run the application**
-   ```bash
-   # Development mode (runs both server and client)
-   npm run dev
+Install all dependencies for root, server, and client:
 
-   # Or run separately:
-   npm run server  # Backend on port 5000
-   npm run client  # Frontend on port 5173
-   ```
+```bash
+npm run install-all
+```
+
+Or install manually:
+
+```bash
+# Install root dependencies
+npm install
+
+# Install server dependencies
+cd server
+npm install
+
+# Install client dependencies
+cd ../client
+npm install
+```
+
+### 3. Configure Environment Variables
+
+Create a `.env` file in the `server` directory:
+
+```env
+PORT=5000
+NODE_ENV=development
+MONGODB_URI=mongodb://localhost:27017/codesense
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+GEMINI_API_KEY=your-gemini-api-key-here
+PISTON_API_URL=https://emkc.org/api/v2/piston
+CORS_ORIGIN=http://localhost:5173
+```
+
+### 4. Firebase Configuration
+
+Set up Firebase Authentication:
+1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
+2. Enable Email/Password authentication
+3. Copy your Firebase config to `client/src/firebase/config.ts`
+
+### 5. Start MongoDB
+
+**Local MongoDB:**
+```bash
+mongod
+```
+
+**MongoDB Atlas (Cloud):**
+- Create a cluster at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- Update `MONGODB_URI` in `.env` with your connection string
+
+---
+
+## ▶️ Running the Application
+
+### Development Mode (Recommended)
+
+Run both server and client concurrently:
+
+```bash
+npm run dev
+```
+
+This will start:
+- **Backend Server**: `http://localhost:5000`
+- **Frontend Client**: `http://localhost:5173`
+
+### Run Separately
+
+**Terminal 1 - Backend:**
+```bash
+npm run server
+# or
+cd server
+npm run dev
+```
+
+**Terminal 2 - Frontend:**
+```bash
+npm run client
+# or
+cd client
+npm start
+```
+
+---
 
 ## 📁 Project Structure
 
 ```
-codesense/
-├── client/                 # React frontend
+Mini-Project/
+├── client/                 # React frontend application
 │   ├── src/
-│   │   ├── components/    # Reusable components
-│   │   ├── contexts/       # React contexts (Auth)
+│   │   ├── components/    # Reusable UI components
+│   │   │   ├── Navbar.tsx
+│   │   │   ├── ErrorBoundary.tsx
+│   │   │   └── PrivateRoute.tsx
+│   │   ├── contexts/       # React contexts
+│   │   │   ├── AuthContext.tsx
+│   │   │   └── ThemeContext.tsx
 │   │   ├── pages/          # Page components
-│   │   └── App.tsx         # Main app component
+│   │   │   ├── Login.tsx
+│   │   │   ├── Register.tsx
+│   │   │   ├── Dashboard.tsx
+│   │   │   ├── CodeEditor.tsx
+│   │   │   ├── History.tsx
+│   │   │   └── SubmissionDetail.tsx
+│   │   ├── firebase/       # Firebase configuration
+│   │   │   └── config.ts
+│   │   ├── App.tsx         # Main app component
+│   │   └── main.tsx        # Entry point
 │   └── package.json
-├── server/                 # Node.js backend
+├── server/                 # Node.js backend server
 │   ├── src/
 │   │   ├── models/         # MongoDB models
 │   │   ├── routes/         # API routes
+│   │   │   ├── authRoutes.ts
+│   │   │   ├── codeRoutes.ts
+│   │   │   └── userRoutes.ts
 │   │   ├── services/       # Business logic
+│   │   │   ├── codeAnalyzer.ts
+│   │   │   ├── geminiService.ts
+│   │   │   └── pistonService.ts
 │   │   ├── middleware/     # Express middleware
+│   │   │   ├── auth.ts
+│   │   │   └── errorHandler.ts
+│   │   ├── utils/          # Utility functions
+│   │   │   └── logger.ts
 │   │   └── index.ts        # Server entry point
 │   └── package.json
-└── package.json            # Root package.json
+└── package.json            # Root package.json with scripts
 ```
+
+---
 
 ## 🔌 API Endpoints
 
 ### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - User login
+- `POST /api/auth/register` - Register a new user
+- `POST /api/auth/login` - User login and get JWT token
 
 ### Code Analysis
 - `POST /api/code/analyze` - Analyze code (requires authentication)
-- `GET /api/code/history` - Get submission history
-- `GET /api/code/submission/:id` - Get specific submission
-- `GET /api/code/stats` - Get user statistics
+  - Request body: `{ code: string, language: string }`
+  - Returns: Analysis results with static analysis and AI feedback
+- `GET /api/code/history` - Get user's submission history
+- `GET /api/code/submission/:id` - Get specific submission details
+- `GET /api/code/stats` - Get user statistics (total submissions, average score, etc.)
 
-### User
-- `GET /api/user/profile` - Get current user profile
+### User Profile
+- `GET /api/user/profile` - Get current user profile information
 
-## 🎯 Usage
+---
 
-1. **Register/Login**: Create an account or sign in
-2. **Write Code**: Use the Monaco editor to write or paste your code
-3. **Select Language**: Choose from Python, C, C++, Java, or JavaScript
-4. **Analyze**: Click "Analyze" to get:
-   - Static analysis results
-   - AI-powered feedback
-   - Code quality score
-   - Optimization suggestions
-5. **View History**: Track your progress in the History page
-6. **Monitor Dashboard**: View statistics and performance trends
+## 🎯 Usage Guide
+
+1. **Register/Login**
+   - Create a new account or sign in with existing credentials
+   - Authentication is handled securely via Firebase and JWT
+
+2. **Write Code**
+   - Navigate to the Code Editor page
+   - Use the Monaco Editor (VS Code editor) to write or paste your code
+   - Select your programming language from the dropdown
+
+3. **Analyze Code**
+   - Click the "Analyze" button to submit your code
+   - The system will perform:
+     - Static code analysis (syntax checking, error detection)
+     - AI-powered analysis (performance, readability, best practices)
+     - Code quality scoring
+
+4. **View Results**
+   - Review detailed feedback and suggestions
+   - Check code quality score and metrics
+   - See optimization recommendations
+
+5. **Track Progress**
+   - Visit the Dashboard to see statistics
+   - View History to browse all previous submissions
+   - Monitor your improvement over time
+
+---
 
 ## 🔧 Configuration
 
 ### Gemini API Setup
 1. Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Create an API key
+2. Create a new API key
 3. Add it to `server/.env` as `GEMINI_API_KEY`
 
 ### MongoDB Setup
-- **Local**: Install MongoDB and run `mongod`
-- **Cloud**: Use MongoDB Atlas and update `MONGODB_URI` in `.env`
+**Local Installation:**
+- Download and install MongoDB Community Edition
+- Start MongoDB service: `mongod`
+- Default connection: `mongodb://localhost:27017/codesense`
+
+**MongoDB Atlas (Cloud):**
+- Sign up at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- Create a free cluster
+- Get connection string and update `MONGODB_URI` in `.env`
+- Whitelist your IP address in Atlas network settings
+
+### Firebase Setup
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Create a new project
+3. Enable Authentication → Email/Password
+4. Copy Firebase config to `client/src/firebase/config.ts`
+
+---
+
+## 🧪 Technologies Used
+
+### Frontend
+- **React 18** - UI library
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **Monaco Editor** - Code editor component
+- **Tailwind CSS** - Styling
+- **React Router** - Navigation
+- **Firebase** - Authentication
+- **Axios** - HTTP client
+- **Recharts** - Data visualization
+
+### Backend
+- **Node.js** - Runtime environment
+- **Express** - Web framework
+- **TypeScript** - Type safety
+- **MongoDB** - Database
+- **Mongoose** - ODM for MongoDB
+- **JWT** - Authentication tokens
+- **Google Gemini API** - AI code analysis
+- **Piston API** - Code execution
+- **Winston** - Logging
+
+---
 
 ## 🚧 Future Enhancements
 
-- [ ] Test case generation
-- [ ] Leaderboard system
+- [ ] Test case generation and execution
+- [ ] Leaderboard system for competitive coding
 - [ ] Plagiarism detection
-- [ ] GitHub integration
-- [ ] Classroom/team features
-- [ ] Advanced code metrics
-- [ ] Export reports (PDF/JSON)
-- [ ] Real-time collaboration
+- [ ] GitHub integration for repository analysis
+- [ ] Classroom/team collaboration features
+- [ ] Advanced code metrics and visualization
+- [ ] Export analysis reports (PDF/JSON)
+- [ ] Real-time collaborative code editing
+- [ ] Support for additional programming languages
+- [ ] Customizable analysis rules and preferences
 
-## 📝 License
-
-MIT License
+---
 
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📧 Support
-
-For issues and questions, please open an issue on GitHub.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
-Built with ❤️ using React, Node.js, MongoDB, and Google Gemini AI
+## 📝 License
 
+This project is licensed under the MIT License - see the LICENSE file for details.
 
+---
 
+## 📧 Support & Contact
 
+For issues, questions, or suggestions:
+- Open an issue on [GitHub Issues](https://github.com/CodeSense-Mini-Project/Mini-Project/issues)
+- Check the documentation in the project wiki
 
+---
 
+<div align="center">
+
+**Built with ❤️ using React, Node.js, MongoDB, and Google Gemini AI**
+
+⭐ Star this repo if you find it helpful!
+
+</div>
