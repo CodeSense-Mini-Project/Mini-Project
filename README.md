@@ -28,8 +28,6 @@
 
 </div>
 
-> **Note:** To display screenshots, add your `login.png` and `dashboard.png` images to the `images/` folder in the repository root.
-
 ---
 
 ## 🚀 Features
